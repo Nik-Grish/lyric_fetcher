@@ -1,6 +1,6 @@
 # Lyrics Adder
 
-A Python script that automatically fetches lyrics from the Genius API and embeds them into your audio files' metadata tags.
+A Python script that automatically fetches lyrics from the Genius API and embeds them into your audio files' metadata tags stored on your computer.
 
 ## ✅ Features
 
