@@ -1,40 +1,95 @@
-# Lyrics Adder
+# 🎧 Lyrics Adder & Audio Analyzer
 
-A Python script that automatically fetches lyrics from the Genius API and embeds them into your audio files' metadata tags stored on your computer.
+A flexible Python tool to automatically:
+
+- 🔍 Search and embed lyrics using the Genius API
+- 🎚 Measure ReplayGain (EBU R128 standard) and tag it
+- 🎛 Measure Dynamic Range (DR14 algorithm) and tag it
+
+Supports `.mp3`, `.flac`, `.wav`, `.m4a`, `.ogg`, `.wv`, `.ape`, `.aiff`.
+
+---
 
 ## ✅ Features
 
-- Supports multiple audio formats: `.mp3`, `.flac`, `.m4a`, `.ogg`, `.ape`, `.wv`, `.wav`, `.aiff`
-- Skips files that already contain lyrics
-- Logs missing lyrics and errors into a log file
-- Displays progress bar with per-track status
-- Compatible with tag editors (e.g., Mp3tag, Poweramp)
+- Skips files that already have lyrics, RG, or DR
+- Optionally runs lyrics only, RG only, DR only — or in any combination
+- All results logged to a file
+- Interactive prompt with confirmation
+- Progress bar for bulk processing
+- Automatically generates and updates config file
 
-## 🚀 Requirements
+---
 
-- Python 3.8+
-- Genius API token
-- Install dependencies:
+## 🔧 Configuration
 
-```bash
-pip install mutagen lyricsgenius tqdm
+When you first run the script, it will generate a `config.txt` file in the same folder:
+
+```ini
+GENIUS_TOKEN=YOUR_GENIUS_API_TOKEN
+MUSIC_ROOT=./music
+LOG_PATH=./lyrics_log.txt
 ```
 
-## 🔧 Usage
+💡 Please edit this file before proceeding with your Genius API token and correct paths.
 
-1. Clone this repo or download the script.
-2. Replace `"YOUR_GENIUS_API_TOKEN"` with your Genius API token.
-3. Set the path to your music folder and the desired log file location.
-4. Run the script:
+---
 
-```bash
-python lyrics_adder.py
+## 🚀 Usage
+
+1. Install requirements:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+2. Install external tools:
+
+   - [ffmpeg](https://ffmpeg.org):
+     ```bash
+     brew install ffmpeg
+     ```
+
+   - [r128gain](https://github.com/slhck/r128gain):
+     ```bash
+     brew install r128gain
+     ```
+
+   - [dr14tool](https://github.com/markbaaijens/dr14tool):
+     ```bash
+     pip install dr14tool
+     ```
+
+3. Run the script:
+   ```bash
+   python lyrics_adder.py
+   ```
+
+---
+
+## 🕹 Options
+
+At runtime, choose which parts of the workflow to run:
+
+```
+1 = Add lyrics
+2 = Add ReplayGain
+3 = Add Dynamic Range (DR14)
+
+You can combine:
+ - 12 or 21: lyrics + RG
+ - 13 or 31: lyrics + DR
+ - 23 or 32: RG + DR
+ - 123 or 321: all steps
 ```
 
-## 📁 Output
+---
 
-- Lyrics will be embedded in the respective tag field depending on format (`USLT`, `LYRICS`, etc.)
-- Log file will be generated (default: `lyrics_log.txt`) with missing lyrics or errors.
+## 📝 Log
+
+A log file is created at the path you define in `LOG_PATH`.  
+It records any missing tags, errors, or failed lyric lookups.
+
+---
 
 ## 💡 Example log
 
@@ -45,6 +100,8 @@ python lyrics_adder.py
 [ERROR] 07 - Broken.m4a — 401 Client Error: Unauthorized for url: ...
 ```
 
-## 🛡 License
+---
+
+## 📃 License
 
 MIT — use freely with attribution.
