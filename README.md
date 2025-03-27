@@ -3,8 +3,8 @@
 A flexible Python tool to automatically:
 
 - 🔍 Search and embed lyrics using the Genius API
-- 🎚 Measure ReplayGain (EBU R128 standard) and tag it
-- 🎛 Measure Dynamic Range (DR14 algorithm) and tag it
+- 🎚 Measure ReplayGain (EBU R128 standard) and tag it (beta)
+- 🎛 Measure Dynamic Range (DR14 algorithm) and tag it (beta)
 
 Supports `.mp3`, `.flac`, `.wav`, `.m4a`, `.ogg`, `.wv`, `.ape`, `.aiff`.
 
