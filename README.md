@@ -49,9 +49,9 @@ LOG_PATH=./lyrics_log.txt
      brew install ffmpeg
      ```
 
-   - [r128gain](https://github.com/slhck/r128gain):
+   - [rsgain]([https://github.com/complexlogic/rsgain?tab=readme-ov-file]):
      ```bash
-     brew install r128gain
+     brew install rsgain
      ```
 
    - [dr14tool](https://github.com/markbaaijens/dr14tool):
